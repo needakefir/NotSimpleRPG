@@ -1,7 +1,5 @@
 #include <iostream>
 #include <conio.h>
-#include <cstdlib>
-#include <map>
 #include "../include/Constants and Types.h"
 #include "../include/Increase and Reduction Damage.h"
 #include "../include/Entity.h"

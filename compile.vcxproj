@@ -124,8 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="logic\Constants and Types.cpp" />
-    <ClCompile Include="logic\ConvertStringToType.cpp" />
-    <ClCompile Include="logic\cooldown.cpp" />
+    <ClCompile Include="logic\getTypeOfAttack.cpp" />
     <ClCompile Include="classes\Entity.cpp" />
     <ClCompile Include="logic\Fight.cpp" />
     <ClCompile Include="logic\GetChancesOfAttack.cpp" />

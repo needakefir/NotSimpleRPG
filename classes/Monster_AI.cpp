@@ -27,7 +27,9 @@ bool Monster_AI::isAttackMagical(std::pair<float,float>& pair,short difficulty,T
 	float tryTrue;
 	while (true)
 	{
-		tryTrue =static_cast<float>(chances.second) * static_cast<float>(difficulty) *static_cast<float>(NumGen(start,retDamageScoreByTypeOfAttack(m)));
+		//The r-value 2 is meaning nothing,just for a generation of attack
+		//In the future this value will be depended by difficulty
+		tryTrue =static_cast<float>(chances.second) * static_cast<float>(difficulty) *static_cast<float>(NumGen(start,retDamageScoreByTypeOfAttack(m))*2);
 		if (tryTrue == retDamageScoreByTypeOfAttack(m))
 		{
 			return true;
@@ -40,7 +42,10 @@ bool Monster_AI::isAttackPhysical(std::pair<float,float>& pair,short difficulty,
 	float tryTrue;
 	while (true)
 	{
-			tryTrue = static_cast<float>(chances.first) * static_cast<float>(difficulty) * static_cast<float>(NumGen(start, static_cast<int>(retDamageScoreByTypeOfAttack(ph))));
+		//Also....
+		//The r-value 2 is meaning nothing,just for a generation of attack
+		//In the future this value will be depended by difficulty
+			tryTrue = static_cast<float>(chances.first) * static_cast<float>(difficulty) * static_cast<float>(NumGen(start,retDamageScoreByTypeOfAttack(ph))*2);
 			if (tryTrue == retDamageScoreByTypeOfAttack(ph))
 			{
 				return true;

@@ -1,7 +1,7 @@
 #include <ctime>
 #include <iostream>
 #include <thread>
-#include "include/Constants and Types.h"
+#include "../include/Constants and Types.h"
 bool realCooldown(short seconds)
 {
 	short minusSeconds{ --seconds };
@@ -19,7 +19,7 @@ bool realCooldown(short seconds)
 	} while (start < end);
 	return true;
 }
-std::string& cooldown(short seconds)
+Type::AttackType::Player_Attacks getTypeOfAttack(short seconds)
 {
 	std::thread CD(realCooldown, seconds);
 	std::string target;
@@ -30,21 +30,22 @@ std::string& cooldown(short seconds)
 	std::cout << "\n";
 	CD.detach();
 	std::cout << "Input a type attack letter by letter:";
-	std::cin >> target;
-	for (auto& i : ContainerOfAttacks::attacks)
+	do
 	{
-		if (i == target)
+		std::cin >> target;
+		for (auto& str : ContainerOfAttacks::attacks)
 		{
-			//End of cycle
-			return target;
+			short i{};
+			if (str!= target)
+			{
+				++i;
+			}
+			else
+			{
+				return static_cast<Type::AttackType::Player_Attacks>(i);
+			}
 		}
-		else
-		{
-			std::cout << "Invalid attack or you input nothing:\n";
-			std::cin >> target;
-
-		}
-	}
-	target = "NULL";
-	return target;
+		std::cout << "Please input a type of attack again:";
+	} while (true);
+	return Type::AttackType::Player_Attacks::Null;
 }
