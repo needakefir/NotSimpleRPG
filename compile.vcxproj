@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="logic\Constants and Types.cpp" />
+    <ClCompile Include="logic\ConvertTypeToStr.cpp" />
     <ClCompile Include="logic\getTypeOfAttack.cpp" />
     <ClCompile Include="classes\Entity.cpp" />
     <ClCompile Include="logic\Fight.cpp" />
@@ -134,7 +135,6 @@
     <ClCompile Include="classes\Monster_AI.cpp" />
     <ClCompile Include="logic\NumGen.cpp" />
     <ClCompile Include="classes\Player.cpp" />
-    <ClCompile Include="logic\PlayerAttackToScore.cpp" />
     <ClCompile Include="rendering\printRoad.cpp" />
     <ClCompile Include="logic\RandEntityType.cpp" />
     <ClCompile Include="logic\ReductionDamage.cpp" />

@@ -9,37 +9,39 @@ namespace Type
 		//Potion Of Undying gives a protection from any damage before the attack
 		//That needed for Monster_AI class.
 		//SunLight and WaterCutter can be used by any monster,but witch has more priority
-		 enum class Magical_Monster_Attacks {
+		enum class Magical_Monster_Attacks {
+			Null = 1,
 			PotionOfUndying,
 			SunLight,
 			WaterCutter,
 			Thunder,
-			Null=-1
 		};
 		//Witch has the lowest priority of physical attack
 		 enum class  Physical_Monster_Attacks {
+			Null=1,
 			Stone,
 			ThrowSand,
 			Stick,
 			Sword,
-			Null=-1
 		}; 
 		 enum class Player_Attacks
 		{
-			
+			 Null=1,
 			//Physical
 			BOW,
 			SWORD,
-			FIST,
-			//-Magical Addon to Physical
-			FireSword,
-			IceBow,
-			IronFist,
-			//-Magic
-			//BloodBending is increase a damage of player,but set a lower hp and get more chance to die from one physical or magical attack.
-			//Needs to be added in future.
-			Null=-1
+			FIST
 		};
+		 enum class Player_Attacks_AddOns
+		 {
+			 //-Magical Addon to Physical
+			 FireSword,
+			 IceBow,
+			 IronFist,
+			 //-Magic
+			 //BloodBending is increase a damage of player,but set a lower hp and get more chance to die from one physical or magical attack.
+			 //Needs to be added in future.
+		 };
 	}
 	namespace MonsterType {
 		enum class E_Types {
@@ -90,6 +92,8 @@ namespace Player_Reduction_Physical_And_Magical_Factor
 namespace ContainerOfAttacks
 {
 	extern std::vector<std::string> attacks;
+	extern std::vector<std::string> Phys_Monster_Attacks;
+	extern std::vector<std::string> Magic_Monster_Attacks;
 }
 //Names needed for a registerMonster() in a Monster.cpp
 namespace Names {
@@ -182,4 +186,3 @@ namespace Chars
 	extern char MonsterOnMap;
 	extern char ItemMap;
 }
-//status of monster or item for func retDefeatedOrTaken in Player.cpp

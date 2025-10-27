@@ -13,7 +13,7 @@ constexpr auto RoadLength = 60;
 //The description of functions in their files
 void replaceCharFromMap(char* BodyPlayer, char* HeadPlayer, short length, short countRoad, std::map<int,bool>& Defeated, std::map<int,bool>& Taken);
 int NumGen(int min, int max);
-Type::MonsterType::E_Types& RandMonsterType();
+Type::MonsterType::E_Types RandMonsterType();
 void printRoad(const char* HeadPlayer, const char* BodyPlayer, const char* roadline);
 //------
 //For road coordinate
@@ -23,7 +23,7 @@ unsigned int i{};
 short countRoad{1};
 //-------------------------
 //Last position of defeated monster
-int last{INT16_MAX };
+int last{INT16_MAX};
 //-------------------------
 //For generation of coordinate of monster
 int X;
@@ -35,7 +35,7 @@ bool isMonsterDefeated;
 //--------------------------------------
 char roadline[]{   "===========================================================\n" };
 char HeadPlayer[]{ "O                                                          \n" };
-char BodyPlayer[]{ "V-----------------------------------------------------------\n" };
+char BodyPlayer[]{ "V----------------------------------------------------------\n" };
 //--------------------------------
 bool Fight(Player& p, Monster& m, short cooldownDur, const char* roadline, short difficulty, int& X);
 int updateRoad(Player& p, short difficulty)

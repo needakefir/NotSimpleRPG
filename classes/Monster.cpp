@@ -5,54 +5,57 @@
 #include "../include/retDamageScoreByTypeOfAttack.h"
 #include "../include/Entity.h"
 #include "../include/Monster_AI.h"
+#include <iostream>
 int NumGen(int min, int max);
 //Using typedef to minimize difficulty
 typedef Type::AttackType::Physical_Monster_Attacks Ph_Attack;
 typedef Type::AttackType::Magical_Monster_Attacks M_Attack;
+//--------------------------------------
+//Need to get a pair of chances
 std::pair<float, float> GetChancesOfAttack(Type::MonsterType::E_Types type, short difficulty);
+//Some constructor
 Monster::Monster(int hp,std::string& name, Type::MonsterType::E_Types type) :Entity(hp, name), M_type(type) {}
+std::string ConvertTypeToStr(Ph_Attack,M_Attack);
 bool Monster::attackPlayer(Player& p,Type::MonsterType::E_Types type, short difficulty)
 {
-	//rand%(rand-min+1)+min
-	Ph_Attack ph{ static_cast<Ph_Attack>(NumGen(-1,3)) };
-	M_Attack m{ static_cast<M_Attack>(NumGen(-1,3)) };
+	bool Magic{ false };
+	bool Physical{ false };
+	Ph_Attack ph{ static_cast<Ph_Attack>(NumGen(1,5)) };
+	M_Attack m{ static_cast<M_Attack>(NumGen(1,5)) };
 	//For every type getting chance of any type of attack for AI.
 	std::pair<float, float> chances{ GetChancesOfAttack(type,difficulty) };
 	//Setting a AI 
 	this->AI.setMagicChanceAttack(chances.first);
 	this->AI.setPhysicalChanceAttack(chances.second);
 	//----------------------------------------
-	bool Magic = this->AI.isAttackMagical(chances, difficulty, type, m);
-	bool Physical = this->AI.isAttackPhysical(chances,difficulty, type, ph);
-	while (true)
+	do
 	{
 		//If Magic and Physical is true,then trying to get one of parameters true.
-		if (Magic ^ Physical)
-		{
-			Magic = this->AI.isAttackMagical(chances,difficulty, type, m);
-			Physical = this->AI.isAttackPhysical(chances,difficulty, type, ph);
-		}
-	}
+		 Magic = this->AI.isAttackMagical(chances, difficulty, type, m);
+		 Physical = this->AI.isAttackPhysical(chances, difficulty, type, ph);
+	} while (Magic ^ Physical);
 	if (Magic)
 	{
 		if (m != M_Attack::Null)
-			p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(m) * increaseDamage(m, difficulty)));
-		else
 		{
-			return false;
+			p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(m) * increaseDamage(m, difficulty)));
+			std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
+			std::cout << p;
 		}
+		else
+			;
+	}
 		if (Physical)
 		{
 			if (ph != Ph_Attack::Null)
 			{
 				p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(ph) * increaseDamage(ph, difficulty)));
+				std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
+				std::cout << p;
 			}
 			else
-			{
-				return false;
-			}
+				;
 		}
-	}
 	return true;
 }
 //Needs to add hp per difficulty

@@ -22,7 +22,9 @@ namespace Player_Reduction_Physical_And_Magical_Factor
 //This function returns the type of attack you need to follow the list order according to Player_Attacks
 namespace ContainerOfAttacks
 {
-	extern std::vector<std::string> attacks{"Bow","Sword","Fist","FireSword","IceBow","IronFist"};
+	extern std::vector<std::string> attacks{"Null","Bow","Sword","Fist"};
+	extern std::vector<std::string> Phys_Monster_Attacks{ "NULL","Stone","ThrowSand","Stick","Sword" };
+	extern std::vector<std::string> Magic_Monster_Attacks{"NULL","PotionOfUndying","SunLight","WaterCutter","Thunder"};
 }
 //Names needed for a registerMonster() in a Monster.cpp
 namespace Names {
@@ -38,7 +40,7 @@ namespace cooldownDurablity
 	extern int SimpleCooldown(15);
 	extern int MiddleCooldown(10);
 	extern int HardCooldown(7);
-	extern int ImpossibleCooldown(5);
+	extern int ImpossibleCooldown(4);
 }
 //the standard value of damage for entities
 namespace StandardDamageScore
@@ -115,4 +117,3 @@ namespace Chars
 	extern char MonsterOnMap{ '!' };
 	extern char ItemMap{ '?' };
 }
-//status of monster or item for func retDefeatedOrTaken in Player.cpp

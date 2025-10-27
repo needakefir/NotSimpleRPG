@@ -45,9 +45,6 @@
     <ClCompile Include="classes\Player.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="logic\PlayerAttackToScore.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="rendering\printRoad.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -70,6 +67,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="logic\Constants and Types.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\ConvertTypeToStr.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
