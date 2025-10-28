@@ -5,4 +5,4 @@ Some kind of game
 `git clone https://github.com/needakefir/NotSimpleRPG`  
  And then pressing a combination  
 `Ctrl+F5`  
-### The last my project maded in VS 2022.
+### Good luck!
