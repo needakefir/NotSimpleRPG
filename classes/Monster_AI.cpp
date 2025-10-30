@@ -24,37 +24,33 @@ float Monster_AI::getPhysicalhanceAttack()
 {
 	return this->PhysicalChanceAttack;
 }
+bool Monster_AI::isAttackMagical(std::pair<float, float>& pair, short difficulty, Type::MonsterType::E_Types type, Type::AttackType::Magical_Monster_Attacks m)
+{
+	if (m == Type::AttackType::Magical_Monster_Attacks::Null)
+		return false;
+	float tryTrue;
+	if (pair.first > pair.second)
+	{
+		tryTrue= pair.first * NumGen(start * difficulty,retDamageScoreByTypeOfAttack(m) * difficulty);
+	}
+	else { tryTrue = pair.first/1.4f * NumGen(start, retDamageScoreByTypeOfAttack(m)); }
+	if(tryTrue>=(retDamageScoreByTypeOfAttack(m)/2.0f))
+		return true;
+	else
+		return false;
+}
 bool Monster_AI::isAttackPhysical(std::pair<float, float>& pair, short difficulty, Type::MonsterType::E_Types type, Type::AttackType::Physical_Monster_Attacks ph)
 {
 	if (ph == Type::AttackType::Physical_Monster_Attacks::Null)
 		return false;
-	std::pair<float, float> chances{ pair };
 	float tryTrue;
-	//Also....
-	//The r-value 2 is meaning nothing,just for a generation of attack
-	//In the future this value will be depended by difficulty
-	tryTrue = static_cast<float>(chances.first) * static_cast<float>(difficulty) * static_cast<float>(NumGen(start, retDamageScoreByTypeOfAttack(ph)) * 2);
-	if (tryTrue >= retDamageScoreByTypeOfAttack(ph)*0.3f)
+	if (pair.second > pair.first)
 	{
-		return true;
+		tryTrue = pair.second * NumGen(start * difficulty, retDamageScoreByTypeOfAttack(ph) * difficulty);
 	}
+	else { tryTrue = pair.second / 1.4f * NumGen(start, retDamageScoreByTypeOfAttack(ph)); }
+	if (tryTrue >= (retDamageScoreByTypeOfAttack(ph) / 2.0f))
+		return true;
 	else
 		return false;
-
-}
-bool Monster_AI::isAttackMagical(std::pair<float,float>& pair,short difficulty,Type::MonsterType::E_Types type,Type::AttackType::Magical_Monster_Attacks m)
-{
-	if (m == Type::AttackType::Magical_Monster_Attacks::Null)
-		return false;
-	std::pair<float, float> chances{ pair };
-	float tryTrue;
-		//The r-value 2 is meaning nothing,just for a generation of attack
-		//In the future this value will be depended by difficulty
-		tryTrue =static_cast<float>(chances.second) * static_cast<float>(difficulty) *static_cast<float>(NumGen(start,retDamageScoreByTypeOfAttack(m))*2);
-		if (tryTrue >= retDamageScoreByTypeOfAttack(m)*chances.first)
-		{
-			return true;
-		}
-		else
-			return false;
 }

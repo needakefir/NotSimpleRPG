@@ -16,8 +16,11 @@ std::pair<float, float> GetChancesOfAttack(Type::MonsterType::E_Types type, shor
 //Some constructor
 Monster::Monster(int hp,std::string& name, Type::MonsterType::E_Types type) :Entity(hp, name), M_type(type) {}
 std::string ConvertTypeToStr(Ph_Attack,M_Attack);
-bool Monster::attackPlayer(Player& p,Type::MonsterType::E_Types type, short difficulty)
+bool Monster::attackPlayer(Player& p, Type::MonsterType::E_Types type, short difficulty)
 {
+	//Useless thing,but it needed
+	size_t i{};
+	//-------------------------------
 	bool Magic{ false };
 	bool Physical{ false };
 	Ph_Attack ph{ static_cast<Ph_Attack>(NumGen(1,5)) };
@@ -46,7 +49,22 @@ bool Monster::attackPlayer(Player& p,Type::MonsterType::E_Types type, short diff
 			Magic = this->AI.isAttackMagical(chances, difficulty, type, m);
 			Physical = this->AI.isAttackPhysical(chances, difficulty, type, ph);
 		}
-
+		++i;
+		if (i >= 40)
+		{
+			if (chances.first > chances.second)
+			{
+				Magic = true;
+				Physical = false;
+				break;
+			}
+			else
+			{
+				Magic = false;
+				Physical = true;
+				break;
+			}
+		}
 	} while (true);
 	if (Magic)
 	{
@@ -55,23 +73,23 @@ bool Monster::attackPlayer(Player& p,Type::MonsterType::E_Types type, short diff
 			p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(m) * increaseDamage(m, difficulty)));
 			std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
 			std::cout << p;
+			return true;
 		}
 		else
-			;
-		return true;
+			return false;
 	}
-if (Physical)
-{
-	if (ph != Ph_Attack::Null)
+	if (Physical)
 	{
-	p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(ph) * increaseDamage(ph, difficulty)));
-	std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
-	std::cout << p;
-	}
-			else
-				;
+		if (ph != Ph_Attack::Null)
+		{
+			p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(ph) * increaseDamage(ph, difficulty)));
+			std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
+			std::cout << p;
+			return true;
 		}
-	return true;
+		else
+			return false;
+	}
 }
 //Needs to add hp per difficulty
 void Monster::registerMonster(Type::MonsterType::E_Types type)

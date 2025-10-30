@@ -7,9 +7,9 @@ std::string ConvertTypeToStr(Ph_Attack ph=Ph_Attack::Null, M_Attack m=M_Attack::
 		;
 		else
 		{
-			for (size_t i{1}; i < ContainerOfAttacks::Phys_Monster_Attacks.size(); ++i)
+			for (size_t i{1}; i <= ContainerOfAttacks::Phys_Monster_Attacks.size(); ++i)
 			{
-				if (ph == static_cast<Type::AttackType::Physical_Monster_Attacks>(i))
+				if (ph == static_cast<Ph_Attack>(i))
 				{
 					return ContainerOfAttacks::Phys_Monster_Attacks[i--];
 				}
@@ -19,9 +19,9 @@ std::string ConvertTypeToStr(Ph_Attack ph=Ph_Attack::Null, M_Attack m=M_Attack::
 		;
 		else
 		{
-			for (size_t i{1}; i < ContainerOfAttacks::Phys_Monster_Attacks.size(); ++i)
+			for (size_t i{1}; i <= ContainerOfAttacks::Magic_Monster_Attacks.size(); ++i)
 			{
-				if (ph == static_cast<Type::AttackType::Physical_Monster_Attacks>(i))
+				if (m == static_cast<M_Attack>(i))
 				{
 					return ContainerOfAttacks::Magic_Monster_Attacks[i--];
 				}
