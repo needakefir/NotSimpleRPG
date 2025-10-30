@@ -27,13 +27,27 @@ bool Monster::attackPlayer(Player& p,Type::MonsterType::E_Types type, short diff
 	//Setting a AI 
 	this->AI.setMagicChanceAttack(chances.first);
 	this->AI.setPhysicalChanceAttack(chances.second);
-	//----------------------------------------
+	Magic = this->AI.isAttackMagical(chances, difficulty, type, m);
+	Physical = this->AI.isAttackPhysical(chances, difficulty, type, ph);
+	////----------------------------------------
 	do
 	{
 		//If Magic and Physical is true,then trying to get one of parameters true.
-		 Magic = this->AI.isAttackMagical(chances, difficulty, type, m);
-		 Physical = this->AI.isAttackPhysical(chances, difficulty, type, ph);
-	} while (Magic ^ Physical);
+		if (Magic && (!Physical))
+			break;
+		else
+		{
+
+		}
+		if ((!Magic) && Physical)
+			break;
+		else
+		{
+			Magic = this->AI.isAttackMagical(chances, difficulty, type, m);
+			Physical = this->AI.isAttackPhysical(chances, difficulty, type, ph);
+		}
+
+	} while (true);
 	if (Magic)
 	{
 		if (m != M_Attack::Null)
@@ -44,15 +58,16 @@ bool Monster::attackPlayer(Player& p,Type::MonsterType::E_Types type, short diff
 		}
 		else
 			;
+		return true;
 	}
-		if (Physical)
-		{
-			if (ph != Ph_Attack::Null)
-			{
-				p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(ph) * increaseDamage(ph, difficulty)));
-				std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
-				std::cout << p;
-			}
+if (Physical)
+{
+	if (ph != Ph_Attack::Null)
+	{
+	p.setHP(p.getHP() - static_cast<float>(retDamageScoreByTypeOfAttack(ph) * increaseDamage(ph, difficulty)));
+	std::cout << "The " << this->getName() << " choosed a " << ConvertTypeToStr(ph, m) << "\n";
+	std::cout << p;
+	}
 			else
 				;
 		}

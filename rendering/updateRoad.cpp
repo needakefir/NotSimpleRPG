@@ -139,6 +139,8 @@ int updateRoad(Player& p, short difficulty)
 				}
 				else
 				{
+					system("cls");
+					printRoad(HeadPlayer, BodyPlayer, roadline);
 					std::cout << "You cant enter this area\n";
 				}
 			}

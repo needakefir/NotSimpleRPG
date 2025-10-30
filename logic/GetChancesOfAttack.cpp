@@ -1,4 +1,5 @@
 #include "../include/Constants and Types.h"
+//Return chances of both attacks
 std::pair<float,float> GetChancesOfAttack(Type::MonsterType::E_Types type,short difficulty)
 {
 	std::pair<float, float> chances;

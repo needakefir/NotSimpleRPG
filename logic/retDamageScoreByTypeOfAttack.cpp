@@ -25,7 +25,6 @@ short retDamageScoreByTypeOfAttack(Type::AttackType::Magical_Monster_Attacks m)
 
 	case Type::AttackType::Magical_Monster_Attacks::WaterCutter:
 		return StandardDamageScore::Monster::MonstersMagicalAttack::WaterCutter;
-
 	}
 }
 //Choose by a physical attack of monster
@@ -42,8 +41,8 @@ short retDamageScoreByTypeOfAttack(Type::AttackType::Physical_Monster_Attacks ph
 	case Type::AttackType::Physical_Monster_Attacks::Sword:
 		return StandardDamageScore::Monster::MonstersPhysicalAttack::Sword;
 
-		case Type::AttackType::Physical_Monster_Attacks::ThrowSand:
-			return StandardDamageScore::Monster::MonstersPhysicalAttack::ThrowSand;
+	case Type::AttackType::Physical_Monster_Attacks::ThrowSand:
+		return StandardDamageScore::Monster::MonstersPhysicalAttack::ThrowSand;
 	
 	}
 }

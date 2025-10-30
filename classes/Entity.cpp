@@ -14,4 +14,12 @@ void Entity::setName(std::string& name){this->E_Name = name;}
 std::string& Entity::getName()
 {return this->E_Name; }
 bool Entity::getDefeated()
-{return (this->getHP() <= 0) ? true : false;}
+{
+	if (this->getHP() < 0)
+	{
+		this->setHP(0);
+		return true;
+	}
+	else
+		return false;
+}

@@ -17,8 +17,7 @@ bool Fight(Player &p,Monster& m,short cooldownDur,const char* roadline,short dif
 	std::cout << "Choose a attack:\n";
 	do
 	{
-		//This maybe a weird,but we getting a type of attack from getTypeOfAttack
-		//and arg of this function is cooldownDur,cause for getting a attack from player has a limit of time.
+		//...
 		p.attackEntity(m,getTypeOfAttack(), difficulty);
 		bool ValidAttack{ m.attackPlayer(p, m.getType(), difficulty) };
 		if (!ValidAttack)
