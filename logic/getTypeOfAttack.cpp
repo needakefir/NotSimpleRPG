@@ -1,23 +1,5 @@
-#include <ctime>
 #include <iostream>
 #include "../include/Constants and Types.h"
-//bool isEnded{ false };
-//void realCooldown(short seconds)
-//{
-//	short minusSeconds{ --seconds };
-//	clock_t end = seconds * CLOCKS_PER_SEC;
-//	clock_t start = clock();
-//	clock_t elapsed = clock() - start;
-//	do
-//	{
-//			//Check every second for input,else repeat std::cin;
-//			if (elapsed == (seconds - minusSeconds) * CLOCKS_PER_SEC)
-//			{
-//				--minusSeconds;
-//			}
-//	} while (start < end);
-//	isEnded = true;
-//}
 Type::AttackType::Player_Attacks getTypeOfAttack()
 {
 	std::string target;

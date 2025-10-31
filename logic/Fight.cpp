@@ -5,7 +5,7 @@
 #define Monster_Defeated true
 #define Player_Defeated false;
 Type::AttackType::Player_Attacks getTypeOfAttack();
-bool Fight(Player &p,Monster& m,short cooldownDur,const char* roadline,short difficulty,int& X)
+bool Fight(Player &p,Monster& m,const char* roadline,short difficulty,int& X)
 {
 	std::cout << roadline;
 	std::cout << "You encountered a monster!\n";

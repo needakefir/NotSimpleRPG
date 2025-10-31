@@ -103,14 +103,6 @@ namespace Names {
 	extern std::string Goblin;
 	extern std::string Null;
 }
-//Needed a for function cooldown in cooldown.cpp
-namespace cooldownDurablity
-{
-	extern int SimpleCooldown;
-	extern int MiddleCooldown;
-	extern int HardCooldown;
-	 extern int ImpossibleCooldown;
-}
 //the standard value of damage for entities
 namespace StandardDamageScore
 {

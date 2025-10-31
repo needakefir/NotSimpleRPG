@@ -11,7 +11,7 @@ constexpr auto Player_Fail = -1;
 constexpr auto RoadLength = 60;
 //Pre-announcement of needed functions
 //The description of functions in their files
-void replaceCharFromMap(char* BodyPlayer, char* HeadPlayer, short length, short countRoad, std::map<int,bool>& Defeated, std::map<int,bool>& Taken);
+void replaceCharFromMap(char* BodyPlayer, char* HeadPlayer, short length, short countRoad, std::map<int,bool>& Defeated);
 int NumGen(int min, int max);
 Type::MonsterType::E_Types RandMonsterType();
 void printRoad(const char* HeadPlayer, const char* BodyPlayer, const char* roadline);
@@ -37,29 +37,11 @@ char roadline[]{   "===========================================================\
 char HeadPlayer[]{ "O                                                          \n" };
 char BodyPlayer[]{ "V----------------------------------------------------------\n" };
 //--------------------------------
-bool Fight(Player& p, Monster& m, short cooldownDur, const char* roadline, short difficulty, int& X);
+bool Fight(Player& p, Monster& m, const char* roadline, short difficulty, int& X);
 int updateRoad(Player& p, short difficulty)
 {
 	//For a cin
 	std::string chooseAttack;
-	//Cooldown Durablity for a func cooldown(line 9)
-	short cooldownDur;
-	//Initialization of cooldown
-	switch (difficulty)
-	{
-	case 1:
-		cooldownDur = cooldownDurablity::SimpleCooldown;
-		break;
-	case 2:
-		cooldownDur = cooldownDurablity::MiddleCooldown;
-		break;
-	case 3:
-		cooldownDur = cooldownDurablity::HardCooldown;
-		break;
-	case 4:
-		cooldownDur = cooldownDurablity::ImpossibleCooldown;
-		break;
-	}
 	Monster m{ 0,Names::Null,Type::MonsterType::E_Types::Null };
 	//Generate type of monster
 	type = RandMonsterType();
@@ -94,7 +76,7 @@ int updateRoad(Player& p, short difficulty)
 			if (p.getX() == X)
 			{
 				system("pause");
-				isMonsterDefeated = Fight(p, m, cooldownDur, roadline,difficulty,X);
+				isMonsterDefeated = Fight(p, m,roadline,difficulty,X);
 				if (isMonsterDefeated) {
 					//Adding to Monster Map
 					p.addEntityToMap(X, m.getType());
@@ -129,7 +111,7 @@ int updateRoad(Player& p, short difficulty)
 				{
 					system("cls");
 					--countRoad;
-					replaceCharFromMap(BodyPlayer, HeadPlayer, RoadLength, countRoad, p.retDefeated(), p.retTaken());
+					replaceCharFromMap(BodyPlayer, HeadPlayer, RoadLength, countRoad, p.retDefeated());
 					//Swapping an elements of road like: -,? | ?,-
 					std::swap(HeadPlayer[i - 1], HeadPlayer[i]);
 					std::swap(BodyPlayer[i - 1], BodyPlayer[i]);
@@ -150,7 +132,7 @@ int updateRoad(Player& p, short difficulty)
 				//Init last defeated monster,if player reaches his coordinates in X
 				type = p.retMap().find(X)->second;
 				m.registerMonster(type);
-				isMonsterDefeated = Fight(p, m, cooldownDur, roadline, difficulty, X);
+				isMonsterDefeated = Fight(p, m, roadline, difficulty, X);
 				if (isMonsterDefeated)
 					continue;
 				else
